@@ -87,8 +87,56 @@ F H <BR>
 <h3>Sample Output</h3>
 <hr>
 ['0', '1', '2', '3', '4']
-
 <hr>
+<pre>
+ <code>
+  def dfs(graph, node, visited, result):
+    visited.add(node)
+    result.append(node)
+
+    for neighbour in graph[node]:
+        if neighbour not in visited:
+            dfs(graph, neighbour, visited, result)
+
+
+v, e = map(int, input().split())
+
+graph = {}
+
+count = 0
+while count < e:
+    line = input().strip()
+    
+    if line == "":
+        continue
+        
+    u, vtx = line.split()
+    
+    if u not in graph:
+        graph[u] = []
+    if vtx not in graph:
+        graph[vtx] = []
+        
+    graph[u].append(vtx)
+    graph[vtx].append(u)
+    
+    count += 1
+
+start = list(graph.keys())[0]
+
+visited = set()
+result = []
+
+dfs(graph, start, visited, result)
+
+print(result)
+ </code>
+</pre>
+<h3>OUTPUT</h3>
+<img width="501" height="390" alt="image" src="https://github.com/user-attachments/assets/a3bce841-8ca6-42c6-99aa-9175b5d8db83" />
+
+<img width="501" height="319" alt="image" src="https://github.com/user-attachments/assets/a5312d76-68a3-4742-af0f-989cc4ab0c5d" />
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
